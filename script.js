@@ -3,6 +3,12 @@ let errorInfo
 let addBtn
 let ulList
 let newToDo
+let popup
+let popupInfo
+let todoToEdit
+let popupInput
+let popupAddBtn
+let popupCloseBtn
 
 const main = () => {
 	prepareDOMElements()
@@ -18,6 +24,7 @@ const prepareDOMElements = () => {
 
 const prepareDOMEvents = () => {
 	addBtn.addEventListener('click', addNewToDo)
+    ulList.addEventListener('click', checkClick)
 }
 
 
@@ -53,9 +60,21 @@ const createToolsArea = () => {
 
     const deleteBtn = document.createElement('button')
     deleteBtn.classList.add('delete')
-    deleteBtn.innerHTML = '<i class="fas fa-check"></i>'
+    deleteBtn.innerHTML = '<i class="fas fa-times"></i>'
 
     tools.append(completeBtn, editBtn, deleteBtn)
+}
+
+
+const checkClick = e => {
+    if(e.target.matches('.complete')) {
+        e.target.closest('li').classList.toggle('completed')
+        e.target.classList.toggle('completed')
+    } else if(e.target.matches('.edit')) {
+        console.log('edit');
+    } else if(e.target.matches('.delete')) {
+        console.log('delete');
+    }
 }
 
 
